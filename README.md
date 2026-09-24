@@ -6,7 +6,7 @@ ubicado en [pachaquiaro].
 ## Problemática de la comunidad
 La empresa cava presentada problemas en mostrar sus producto hoy en dia con las nuevas generaciones, es decir, no estban relacionados con la manera nueva de mercadeo por medio de paginas web
 ## Enlace de la página
-https://usuario.github.io/nombre-del-repositorio/
+https://luisacastiblanco530-sys.github.io/cava-calzado-comodo/
 ## Tecnologías usadas
 - HTML
 - CSS
