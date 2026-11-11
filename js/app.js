@@ -1,413 +1,413 @@
-// ================================
-// PRODUCTOS DE CAVA
-// ================================
+
+
+// =====================================
+// PRODUCTOS CAVA
+// =====================================
 
 const productos = [
-
     {
         id: 1,
         nombre: "CAVA Casual Blanco",
         categoria: "casual",
         precio: 89900
     },
-
     {
         id: 2,
         nombre: "CAVA Deportivo Negro",
         categoria: "deportivo",
         precio: 119900
     },
-
     {
         id: 3,
         nombre: "CAVA Elegante Café",
         categoria: "elegante",
         precio: 139900
     },
-
     {
         id: 4,
         nombre: "CAVA Casual Beige",
         categoria: "casual",
         precio: 94900
     },
-
     {
         id: 5,
         nombre: "CAVA Deportivo Blanco",
         categoria: "deportivo",
         precio: 124900
     },
-
     {
         id: 6,
         nombre: "CAVA Elegante Negro",
         categoria: "elegante",
         precio: 149900
     }
-
 ];
 
-
-// ================================
-// CARRITO
-// ================================
-
-let carrito = [];
-
-
-// Mostrar productos al abrir la página
-
-mostrarProductos(productos);
-
-
-// ================================
-// MOSTRAR PRODUCTOS
-// ================================
+// =====================================
+// MOSTRAR PRODUCTOS EN EL CATÁLOGO
+// =====================================
 
 function mostrarProductos(lista) {
 
-    const contenedor =
-        document.getElementById("productos");
+    const contenedor = document.getElementById("productos");
+
+    if (!contenedor) {
+        return;
+    }
 
     contenedor.innerHTML = "";
 
+    lista.forEach(function(producto) {
 
-    if (lista.length === 0) {
-
-        contenedor.innerHTML =
-            "<p>No encontramos productos.</p>";
-
-        return;
-
-    }
-
-
-    lista.forEach(producto => {
-
-        const tarjeta =
-            document.createElement("div");
+        const tarjeta = document.createElement("div");
 
         tarjeta.className = "producto";
 
-
         tarjeta.innerHTML = `
+            <img
+                src="img/zapatos-cava.jpg"
+                alt="${producto.nombre}"
+                class="producto-imagen"
+            >
 
-            <div class="producto-imagen"></div>
+            <h3>${producto.nombre}</h3>
 
-            <div class="producto-info">
+            <p>Precio: $${producto.precio.toLocaleString("es-CO")}</p>
 
-                <h3>
-                    ${producto.nombre}
-                </h3>
-
-                <p>
-                    Calzado CAVA de excelente calidad.
-                </p>
-
-                <div class="precio">
-                    $${producto.precio.toLocaleString("es-CO")}
-                </div>
-
-                <button
-                    onclick="agregarCarrito(${producto.id})"
-                >
-                    Agregar al carrito
-                </button>
-
-            </div>
-
+            <button
+                type="button"
+                onclick="agregarCarrito(${producto.id})"
+            >
+                Agregar al carrito
+            </button>
         `;
-
 
         contenedor.appendChild(tarjeta);
 
     });
-
 }
 
 
-// ================================
-// AGREGAR AL CARRITO
-// ================================
-
-function agregarCarrito(id) {
-
-    const producto =
-        productos.find(p => p.id === id);
+// Mostrar los seis productos al abrir la página
+mostrarProductos(productos);
 
 
-    carrito.push(producto);
+// =====================================
+// CONFIGURACIÓN
+// =====================================
+
+// IMPORTANTE:
+// Cambia este número por el WhatsApp real de CAVA.
+// Debe llevar 57 y el número completo, sin espacios.
+
+const WHATSAPP_CAVA = "3134902922";
 
 
-    actualizarCarrito();
+// =====================================
+// CARRITO
+// =====================================
+
+let carrito = [];
+
+let personalizacionActual = null;
 
 
-    alert(
-        producto.nombre +
-        " fue agregado al carrito."
-    );
+// =====================================
+// SELECCIONAR MODELO DEL CATÁLOGO
+// =====================================
 
-}
+function seleccionarModelo(modelo) {
 
+    const campoModelo = document.getElementById("modelo");
+    const campoPedido = document.getElementById("pedidoModelo");
 
-// ================================
-// ACTUALIZAR CARRITO
-// ================================
-
-function actualizarCarrito() {
-
-    const lista =
-        document.getElementById("lista-carrito");
-
-    const contador =
-        document.getElementById("contador-carrito");
-
-    const total =
-        document.getElementById("total-carrito");
-
-
-    contador.textContent =
-        carrito.length;
-
-
-    lista.innerHTML = "";
-
-
-    if (carrito.length === 0) {
-
-        lista.innerHTML =
-            "<p>Tu carrito está vacío.</p>";
-
-        total.textContent = "$0";
-
-        return;
-
+    if (campoModelo) {
+        campoModelo.value = modelo;
     }
 
+    if (campoPedido) {
+        campoPedido.value = modelo;
+    }
 
-    let suma = 0;
+    document.getElementById("personalizar")
+        .scrollIntoView({ behavior: "smooth" });
 
-
-    carrito.forEach((producto, index) => {
-
-        suma += producto.precio;
-
-
-        const item =
-            document.createElement("div");
-
-
-        item.style.padding = "15px 0";
-
-        item.style.borderBottom =
-            "1px solid #ddd";
-
-
-        item.innerHTML = `
-
-            <strong>
-                ${producto.nombre}
-            </strong>
-
-            <p>
-                $${producto.precio.toLocaleString("es-CO")}
-            </p>
-
-            <button
-                onclick="eliminarProducto(${index})"
-            >
-                Eliminar
-            </button>
-
-        `;
-
-
-        lista.appendChild(item);
-
-    });
-
-
-    total.textContent =
-        "$" + suma.toLocaleString("es-CO");
-
+    actualizarPersonalizacion();
 }
 
 
-// ================================
-// ELIMINAR PRODUCTO
-// ================================
+// =====================================
+// ACTUALIZAR VISTA PREVIA
+// =====================================
 
-function eliminarProducto(index) {
+function actualizarPersonalizacion() {
 
-    carrito.splice(index, 1);
+    const modelo = document.getElementById("modelo").value;
+    const color = document.getElementById("color").value;
+    const talla = document.getElementById("talla").value;
+    const material = document.getElementById("material").value;
 
-    actualizarCarrito();
+    const imagen = document.getElementById("imagenZapato");
+    const texto = document.getElementById("textoPersonalizacion");
 
+    if (!modelo || !color || !talla || !material) {
+
+        texto.textContent =
+            "Selecciona modelo, color, talla y material para ver tu diseño.";
+
+        return;
+    }
+
+    // Mostrar características seleccionadas
+
+    texto.textContent =
+        modelo + " | Color: " + color +
+        " | Talla: " + talla +
+        " | Material: " + material;
+
+    // Efectos aproximados para la vista previa.
+    // No generan una imagen nueva ni recolorean
+    // perfectamente el zapato.
+
+    const filtros = {
+        "Beige": "sepia(0.35) saturate(0.65) brightness(1.12)",
+        "Café": "sepia(0.8) saturate(1.2) brightness(0.8)",
+        "Negro": "grayscale(0.8) brightness(0.55)",
+        "Blanco": "grayscale(0.5) brightness(1.25)"
+    };
+
+    imagen.style.filter = filtros[color] || "none";
+
+    personalizacionActual = {
+        modelo: modelo,
+        color: color,
+        talla: talla,
+        material: material
+    };
 }
 
 
-// ================================
-// ABRIR CARRITO
-// ================================
-
-function abrirCarrito() {
-
-    document
-        .getElementById("carrito")
-        .classList
-        .add("activo");
-
-}
-
-
-// ================================
-// CERRAR CARRITO
-// ================================
-
-function cerrarCarrito() {
-
-    document
-        .getElementById("carrito")
-        .classList
-        .remove("activo");
-
-}
-
-
-// ================================
-// FILTRAR CATEGORÍAS
-// ================================
-
-function filtrarCategoria(categoria) {
-
-    const resultado =
-        productos.filter(
-            producto =>
-                producto.categoria === categoria
-        );
-
-
-    mostrarProductos(resultado);
-
-
-    document
-        .getElementById("productos")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
-
-}
-
-
-// ================================
-// BUSCADOR
-// ================================
-
-function buscarProducto() {
-
-    const texto =
-        document
-            .getElementById("buscador")
-            .value
-            .toLowerCase();
-
-
-    const resultado =
-        productos.filter(producto =>
-
-            producto.nombre
-                .toLowerCase()
-                .includes(texto)
-
-        );
-
-
-    mostrarProductos(resultado);
-
-}
-
-
-// ================================
-// PERSONALIZACIÓN
-// ================================
+// =====================================
+// AGREGAR PERSONALIZADO AL CARRITO
+// =====================================
 
 function agregarPersonalizado() {
 
-    const modelo =
-        document.getElementById("modelo").value;
+    const modelo = document.getElementById("modelo").value;
+    const color = document.getElementById("color").value;
+    const talla = document.getElementById("talla").value;
+    const material = document.getElementById("material").value;
 
-    const talla =
-        document.getElementById("talla").value;
+    if (!modelo || !color || !talla || !material) {
 
-    const color =
-        document.getElementById("color").value;
+        alert("Selecciona el modelo, color, talla y material.");
 
-    const material =
-        document.getElementById("material").value;
-
+        return;
+    }
 
     const personalizado = {
 
         id: Date.now(),
 
-        nombre:
-            "Zapato personalizado",
+        nombre: "Zapato personalizado CAVA",
 
-        categoria:
-            "personalizado",
+        categoria: "personalizado",
 
-        precio:
-            159900,
+        precio: 159900,
 
         detalles:
-            `Modelo: ${modelo} | Talla: ${talla} | Color: ${color} | Material: ${material}`
-
+            "Modelo: " + modelo +
+            ", Color: " + color +
+            ", Talla: " + talla +
+            ", Material: " + material
     };
-
 
     carrito.push(personalizado);
 
-
     actualizarCarrito();
 
+    // Pasar modelo y talla al formulario
 
-    alert(
-        "¡Tu diseño personalizado fue agregado al carrito!"
-    );
+    document.getElementById("pedidoModelo").value = modelo;
+    document.getElementById("pedidoTalla").value = talla;
 
+    // Añadir detalles al pedido
 
-    abrirCarrito();
+    personalizacionActual = {
+        modelo: modelo,
+        color: color,
+        talla: talla,
+        material: material
+    };
 
+    alert("¡Tu diseño fue agregado al pedido!");
+
+    document.getElementById("pedido")
+        .scrollIntoView({ behavior: "smooth" });
 }
-// ==================== FORMULARIO DE PEDIDO ====================
 
-function mostrarPedido() {
-    document.getElementById("carrito").style.display = "none";
-    document.getElementById("pedido").style.display = "flex";
-}
 
-function cerrarPedido() {
-    document.getElementById("pedido").style.display = "none";
-    document.getElementById("carrito").style.display = "flex";
-}
+// =====================================
+// AGREGAR PRODUCTO DEL CATÁLOGO
+// =====================================
 
-function confirmarPedido() {
+function agregarCarrito(id) {
 
-    const nombre = document.getElementById("nombrePedido").value;
-    const telefono = document.getElementById("telefonoPedido").value;
-    const direccion = document.getElementById("direccionPedido").value;
-    const pago = document.getElementById("pagoPedido").value;
+    const producto = productos.find(p => p.id === id);
 
-    if (!nombre || !telefono || !direccion || !pago) {
-        alert("Por favor completa todos los datos del pedido.");
+    if (!producto) {
+        alert("No encontramos este producto.");
         return;
     }
 
-    alert(
-        "¡Pedido recibido, " + nombre + "!\n\n" +
-        "Gracias por comprar en CAVA.\n" +
-        "Nos comunicaremos contigo al " + telefono +
-        " para confirmar tu pedido."
-    );
+    carrito.push(producto);
+
+    actualizarCarrito();
+
+    alert(producto.nombre + " fue agregado al carrito.");
 }
+
+
+// =====================================
+// ACTUALIZAR CONTADOR DEL CARRITO
+// =====================================
+
+function actualizarCarrito() {
+
+    const contador = document.getElementById("contador");
+
+    if (contador) {
+        contador.textContent = carrito.length;
+    }
+
+}
+
+
+// =====================================
+// ELIMINAR PRODUCTO
+// =====================================
+
+function eliminarProducto(index) {
+
+    if (index < 0 || index >= carrito.length) {
+        return;
+    }
+
+    carrito.splice(index, 1);
+
+    actualizarCarrito();
+}
+
+
+// =====================================
+// FILTRAR PRODUCTOS
+// =====================================
+
+function filtrarCategoria(categoria) {
+
+    const resultado = productos.filter(
+        producto => producto.categoria === categoria
+    );
+
+    mostrarProductos(resultado);
+}
+
+
+// =====================================
+// BUSCADOR
+// =====================================
+
+function buscarProducto() {
+
+    const campo = document.getElementById("buscador");
+
+    if (!campo) {
+        return;
+    }
+
+    const texto = campo.value.toLowerCase();
+
+    const resultado = productos.filter(
+        producto => producto.nombre.toLowerCase().includes(texto)
+    );
+
+    mostrarProductos(resultado);
+}
+
+
+// =====================================
+// ENVIAR PEDIDO POR WHATSAPP
+// =====================================
+
+document.getElementById("formPedido").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const nombre = document.getElementById("nombre").value.trim();
+    const telefono = document.getElementById("telefono").value.trim();
+    const modelo = document.getElementById("pedidoModelo").value;
+    const talla = document.getElementById("pedidoTalla").value;
+    const cantidad = document.getElementById("cantidad").value;
+    const pago = document.getElementById("pago").value;
+    const envio = document.getElementById("envio").value;
+    const direccion = document.getElementById("direccion").value.trim();
+    const observaciones = document.getElementById("observaciones").value.trim();
+
+    if (!nombre || !telefono || !modelo || !talla ||
+        !cantidad || !pago || !envio || !direccion) {
+
+        alert("Completa todos los campos obligatorios.");
+
+        return;
+    }
+
+    if (Number(cantidad) < 1) {
+
+        alert("La cantidad debe ser de al menos un par.");
+
+        return;
+    }
+
+    // Crear resumen del pedido
+
+    let mensaje =
+        "¡Hola CAVA! Quiero realizar un pedido.%0A%0A" +
+        "*DATOS DEL CLIENTE*%0A" +
+        "Nombre: " + encodeURIComponent(nombre) + "%0A" +
+        "Teléfono: " + encodeURIComponent(telefono) + "%0A%0A" +
+        "*DATOS DEL CALZADO*%0A" +
+        "Modelo: " + encodeURIComponent(modelo) + "%0A" +
+        "Talla: " + encodeURIComponent(talla) + "%0A" +
+        "Cantidad: " + encodeURIComponent(cantidad) + "%0A";
+
+    // Incluir detalles de personalización si existen
+
+    if (personalizacionActual) {
+
+        mensaje +=
+            "Color: " + encodeURIComponent(personalizacionActual.color) + "%0A" +
+            "Material: " + encodeURIComponent(personalizacionActual.material) + "%0A";
+    }
+
+    mensaje +=
+        "%0A*MÉTODO DE PAGO Y ENVÍO*%0A" +
+        "Pago: " + encodeURIComponent(pago) + "%0A" +
+        "Envío: " + encodeURIComponent(envio) + "%0A" +
+        "Dirección: " + encodeURIComponent(direccion) + "%0A";
+
+    if (observaciones) {
+
+        mensaje +=
+            "%0A*OBSERVACIONES*%0A" +
+            encodeURIComponent(observaciones);
+    }
+
+    // Abrir WhatsApp con el pedido listo
+
+    const enlace =
+        "https://wa.me/" + WHATSAPP_CAVA +
+        "?text=" + mensaje;
+
+    window.open(enlace, "_blank");
+
+});

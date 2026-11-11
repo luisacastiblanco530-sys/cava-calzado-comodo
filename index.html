@@ -1,289 +1,145 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>CAVA | Diseña tu paso</title>
-
-    <meta name="description" content="CAVA - Calzado nacional e importado. Diseña y personaliza tus zapatos a tu estilo.">
+    <title>CAVA | Innovando tus pasos</title>
 
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 
 <body>
 
-    <!-- ==================== MENÚ ==================== -->
+    <!-- ENCABEZADO -->
+    <header class="encabezado">
 
-    <header class="header">
+        <a href="#inicio">
+            <img src="img/logo-cava.jpg.jpeg"
+                 alt="Logo de CAVA"
+                 class="logo">
+        </a>
 
-        <div class="logo">
-    <img src="img/logo-cava.jpg.jpeg" alt="Logo CAVA">
-</div>
-
-        <nav class="menu">
-
+        <nav>
             <a href="#inicio">Inicio</a>
             <a href="#catalogo">Catálogo</a>
-            <a href="#personalizacion">Personalización</a>
-            <a href="#nosotros">¿Quiénes Somos?</a>
-            <a href="#ofertas">Ofertas</a>
-            <a href="#resenas">Reseñas</a>
+            <a href="#personalizar">Personalización</a>
+            <a href="#pedido">Realizar pedido</a>
             <a href="#contacto">Contacto</a>
-
         </nav>
 
-        <button class="carrito-btn" onclick="abrirCarrito()">
-            🛒 <span id="contador-carrito">0</span>
-        </button>
+        <a href="#pedido" class="boton">
+            🛒 Carrito <span id="contador">0</span>
+        </a>
 
     </header>
 
 
-    <!-- ==================== INICIO ==================== -->
-
+    <!-- INICIO -->
     <section id="inicio" class="hero">
 
         <div class="hero-contenido">
 
-            <p class="texto-pequeno">
-                CALZADO NACIONAL E IMPORTADO
-            </p>
+            <p>CALZADO NACIONAL E IMPORTADO</p>
 
-            <h2>
-                Diseña tus
-                <span>Zapatos</span>
-                <br>
-                a tu Estilo
-            </h2>
+            <h1>Diseña tus zapatos a tu estilo</h1>
 
-            <p class="descripcion">
+            <p>
                 Encuentra el calzado perfecto para ti
                 y personalízalo como quieras.
             </p>
 
-            <div class="hero-botones">
+            <a href="#catalogo" class="boton">
+                Ver modelos
+            </a>
 
-                <a href="#catalogo" class="btn principal">
-                    Ver modelos
-                </a>
-
-                <a href="#personalizacion" class="btn secundario">
-                    Personalizar
-                </a>
-
-            </div>
+            <a href="#personalizar" class="boton boton-secundario">
+                Personalizar
+            </a>
 
         </div>
 
     </section>
 
 
-    <!-- ==================== BENEFICIOS ==================== -->
+    <!-- CATÁLOGO -->
+    
+<section id="catalogo">
 
-    <section class="beneficios">
+    <h2>Nuestro catálogo CAVA</h2>
 
-        <div class="beneficio">
-            <div class="icono">👟</div>
-            <h3>Variedad en calzado</h3>
-            <p>Encuentra diferentes estilos y modelos.</p>
-        </div>
+    <p>Encuentra el calzado que más te gusta.</p>
 
-        <div class="beneficio">
-            <div class="icono">🎨</div>
-            <h3>Personaliza tu diseño</h3>
-            <p>Crea un estilo único para ti.</p>
-        </div>
+    <!-- Buscador -->
+    <input
+        type="text"
+        id="buscador"
+        placeholder="Buscar zapatos..."
+    >
 
-        <div class="beneficio">
-            <div class="icono">🔒</div>
-            <h3>Compras seguras</h3>
-            <p>Realiza tus pedidos de manera sencilla.</p>
-        </div>
+    <button type="button" onclick="buscarProducto()">
+        Buscar
+    </button>
 
-        <div class="beneficio">
-            <div class="icono">📦</div>
-            <h3>Envíos a todo el país</h3>
-            <p>Recibe tus productos donde estés.</p>
-        </div>
-
-    </section>
-
-
-    <!-- ==================== CATÁLOGO ==================== -->
-
-    <section id="catalogo" class="seccion">
-
-        <div class="titulo-seccion">
-
-            <span></span>
-
-            <div>
-                <h2>Nuestra Colección</h2>
-                <p>Descubre nuestros modelos</p>
-            </div>
-
-            <span></span>
-
-        </div>
-
-
-        <div class="categorias">
-
-            <div class="categoria">
-                <div class="imagen-producto">
-                    👟
-                </div>
-
-                <h3>Casuales</h3>
-
-                <button onclick="filtrarCategoria('casual')">
-                    Ver modelos
-                </button>
-            </div>
-
-
-            <div class="categoria">
-                <div class="imagen-producto">
-                    👟
-                </div>
-
-                <h3>Deportivos</h3>
-
-                <button onclick="filtrarCategoria('deportivo')">
-                    Ver modelos
-                </button>
-            </div>
-
-
-            <div class="categoria">
-                <div class="imagen-producto">
-                    👞
-                </div>
-
-                <h3>Elegantes</h3>
-
-                <button onclick="filtrarCategoria('elegante')">
-                    Ver modelos
-                </button>
-            </div>
-
-        </div>
-
-
-        <!-- BUSCADOR -->
-
-        <div class="buscador">
-
-            <input
-                type="text"
-                id="buscador"
-                placeholder="Buscar zapatos..."
-                onkeyup="buscarProducto()"
-            >
-
-            <button onclick="buscarProducto()">
-                🔍 Buscar
-            </button>
-
-        </div>
-
-
-        <!-- PRODUCTOS -->
-
-        <div id="productos" class="productos">
-
-            <!-- Los productos serán creados con JavaScript -->
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================== PERSONALIZACIÓN ==================== -->
-
-    <section id="personalizacion" class="personalizacion">
-
-    <div class="personalizacion-imagen">
-
-        <img
-            src="img/personalizacion.jpg.jpeg"
-            alt="Personalización del calzado CAVA"
-        >
-
-    </div>
-
-    <div class="personalizacion-contenido">
-
-        <p class="texto-pequeno">
-            CREA ALGO ÚNICO
-        </p>
-
-        <h2>
-            Personalización
-            <span>del calzado</span>
-        </h2>
-
-        <p>
-            Crea un diseño único, hecho a tu estilo.
-            Elige colores, materiales, detalles e incluso
-            agrega tus iniciales o nombre.
-        </p>
-
-        <a href="#configurador" class="btn principal">
-            Diseña ahora
-        </a>
-
-    </div>
+    <!-- Aquí aparecerán los productos -->
+    <div id="productos" class="productos"></div>
 
 </section>
 
 
-    <!-- ==================== CONFIGURADOR ==================== -->
 
-    <section id="configurador" class="seccion">
+    <!-- PERSONALIZACIÓN -->
+    <section id="personalizar">
 
-        <div class="titulo-seccion">
+        <h2>Personaliza tu calzado</h2>
 
-            <span></span>
+        <p>Selecciona las características de tu zapato.</p>
 
-            <div>
-                <h2>Diseña tu calzado</h2>
-                <p>Personaliza cada detalle</p>
-            </div>
+        <div class="personalizacion">
 
-            <span></span>
+            <div class="vista-previa">
 
-        </div>
+                <h3>Vista previa de tu diseño</h3>
 
+                <img id="imagenZapato"
+                     src="img/zapatos-cava.jpg"
+                     alt="Vista previa del zapato">
 
-        <div class="configurador">
-
-            <div class="vista-zapato">
-
-                <div id="zapato-preview">
-                    👟
-                </div>
-
-                <h3>Vista previa</h3>
+                <p id="textoPersonalizacion">
+                    Tu diseño aparecerá aquí.
+                </p>
 
             </div>
 
 
             <div class="opciones">
 
-                <label>Modelo</label>
+                <label for="modelo">Modelo de zapato</label>
 
                 <select id="modelo">
-                    <option>Casual</option>
-                    <option>Deportivo</option>
-                    <option>Elegante</option>
+                    <option value="">Selecciona un modelo</option>
+                    <option value="Casual CAVA">Casual CAVA</option>
+                    <option value="Deportivo CAVA">Deportivo CAVA</option>
+                    <option value="Elegante CAVA">Elegante CAVA</option>
                 </select>
 
 
-                <label>Talla</label>
+                <label for="color">Color del calzado</label>
+
+                <select id="color">
+                    <option value="">Selecciona un color</option>
+                    <option value="Beige">Beige</option>
+                    <option value="Café">Café</option>
+                    <option value="Negro">Negro</option>
+                    <option value="Blanco">Blanco</option>
+                </select>
+
+
+                <label for="talla">Talla</label>
 
                 <select id="talla">
+                    <option value="">Selecciona tu talla</option>
                     <option>35</option>
                     <option>36</option>
                     <option>37</option>
@@ -292,38 +148,30 @@
                     <option>40</option>
                     <option>41</option>
                     <option>42</option>
+                    <option>43</option>
                 </select>
 
 
-                <label>Color</label>
-
-                <select id="color">
-
-                    <option>Negro</option>
-                    <option>Blanco</option>
-                    <option>Rojo</option>
-                    <option>Azul</option>
-                    <option>Beige</option>
-
-                </select>
-
-
-                <label>Material</label>
+                <label for="material">Material</label>
 
                 <select id="material">
-
-                    <option>Cuero</option>
-                    <option>Sintético</option>
-                    <option>Tela</option>
-
+                    <option value="">Selecciona un material</option>
+                    <option value="Cuero">Cuero</option>
+                    <option value="Tela">Tela</option>
+                    <option value="Sintético">Sintético</option>
                 </select>
 
 
-                <button
-                    class="btn principal"
-                    onclick="agregarPersonalizado()"
-                >
-                    Agregar al carrito
+                <button type="button"
+                        class="boton"
+                        onclick="actualizarPersonalizacion()">
+                    Generar vista previa
+                </button>
+
+                <button type="button"
+                        class="boton"
+                        onclick="agregarPersonalizado()">
+                    Agregar al pedido
                 </button>
 
             </div>
@@ -333,352 +181,120 @@
     </section>
 
 
-    <!-- ==================== QUIÉNES SOMOS ==================== -->
+    <!-- FORMULARIO DEL PEDIDO -->
+    <section id="pedido">
 
-    <section id="nosotros" class="seccion nosotros">
+        <h2>Realiza tu pedido</h2>
 
-        <div class="titulo-seccion">
+        <p>Completa los datos para solicitar tu calzado.</p>
 
-            <span></span>
+        <form id="formPedido">
 
-            <div>
-                <h2>¿Quiénes Somos?</h2>
-                <p>Calidad y estilo con experiencia</p>
-            </div>
+            <label for="nombre">Nombre completo</label>
+            <input type="text"
+                   id="nombre"
+                   placeholder="Escribe tu nombre"
+                   required>
 
-            <span></span>
 
-        </div>
+            <label for="telefono">Número de teléfono</label>
+            <input type="tel"
+                   id="telefono"
+                   placeholder="Tu número de contacto"
+                   required>
 
 
-        <div class="nosotros-contenido">
+            <label for="pedidoModelo">Modelo seleccionado</label>
+            <select id="pedidoModelo" required>
+                <option value="">Selecciona un modelo</option>
+                <option>Casual CAVA</option>
+                <option>Deportivo CAVA</option>
+                <option>Elegante CAVA</option>
+            </select>
 
-            <div class="nosotros-imagen">
-                👞
-            </div>
 
-            <div class="nosotros-texto">
+            <label for="pedidoTalla">Talla</label>
+            <select id="pedidoTalla" required>
+                <option value="">Selecciona una talla</option>
+                <option>35</option>
+                <option>36</option>
+                <option>37</option>
+                <option>38</option>
+                <option>39</option>
+                <option>40</option>
+                <option>41</option>
+                <option>42</option>
+                <option>43</option>
+            </select>
 
-                <h3>Somos CAVA</h3>
 
-                <p>
-                    CAVA es una empresa dedicada a la comercialización
-                    y distribución de calzado nacional e importado.
-                    Buscamos ofrecer diferentes estilos y modelos
-                    para satisfacer las necesidades de nuestros clientes.
-                </p>
+            <label for="cantidad">Cantidad de pares</label>
+            <input type="number"
+                   id="cantidad"
+                   min="1"
+                   value="1"
+                   required>
 
-                <p>
-                    Nuestro objetivo es brindar productos de calidad
-                    y permitir que cada persona pueda encontrar
-                    o crear el calzado que mejor represente su estilo.
-                </p>
 
-            </div>
+            <label for="pago">Método de pago</label>
+            <select id="pago" required>
+                <option value="">Selecciona un método</option>
+                <option>Transferencia</option>
+                <option>Pago contra entrega (por confirmar)</option>
+                <option>Otro método</option>
+            </select>
 
-        </div>
 
+            <label for="envio">Método de envío</label>
+            <select id="envio" required>
+                <option value="">Selecciona un envío</option>
+                <option>Envío a domicilio</option>
+                <option>Recoger en punto acordado</option>
+            </select>
 
-        <!-- MISIÓN Y VISIÓN -->
 
-        <div class="mision-vision">
+            <label for="direccion">Dirección de entrega</label>
+            <input type="text"
+                   id="direccion"
+                   placeholder="Dirección, ciudad y departamento"
+                   required>
 
-            <div>
 
-                <h3>🎯 Misión</h3>
+            <label for="observaciones">Observaciones</label>
+            <textarea id="observaciones"
+                      placeholder="Escribe aquí detalles adicionales"></textarea>
 
-                <p>
-                    Ofrecer calzado de calidad, variedad y diseño,
-                    brindando a nuestros clientes una experiencia
-                    práctica y personalizada.
-                </p>
 
-            </div>
-
-
-            <div>
-
-                <h3>🔭 Visión</h3>
-
-                <p>
-                    Ser una empresa reconocida en Colombia por la
-                    calidad de nuestros productos, innovación y
-                    opciones de personalización.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================== OFERTAS ==================== -->
-
-    <section id="ofertas" class="ofertas">
-
-        <div>
-
-            <p>OFERTAS ESPECIALES</p>
-
-            <h2>
-                Encuentra tu próximo
-                <span>par favorito</span>
-            </h2>
-
-            <p>
-                Aprovecha nuestras promociones y encuentra
-                el calzado ideal para ti.
-            </p>
-
-            <a href="#catalogo" class="btn principal">
-                Ver ofertas
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================== RESEÑAS ==================== -->
-
-    <section id="resenas" class="seccion">
-
-        <div class="titulo-seccion">
-
-            <span></span>
-
-            <div>
-                <h2>Opiniones de nuestros clientes</h2>
-            </div>
-
-            <span></span>
-
-        </div>
-
-
-        <div class="resenas">
-
-            <div class="resena">
-
-                <div class="estrellas">
-                    ★★★★★
-                </div>
-
-                <p>
-                    "Me encantó poder personalizar mis zapatos.
-                    El proceso fue muy sencillo."
-                </p>
-
-                <strong>— Laura G.</strong>
-
-            </div>
-
-
-            <div class="resena">
-
-                <div class="estrellas">
-                    ★★★★★
-                </div>
-
-                <p>
-                    "Muy buenos productos y excelente atención.
-                    El envío fue rápido."
-                </p>
-
-                <strong>— Carlos M.</strong>
-
-            </div>
-
-
-            <div class="resena">
-
-                <div class="estrellas">
-                    ★★★★★
-                </div>
-
-                <p>
-                    "Encontré exactamente el modelo que estaba buscando."
-                </p>
-
-                <strong>— Andrea P.</strong>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================== FORMAS DE PAGO ==================== -->
-
-    <section class="pagos">
-
-        <h2>Formas de pago</h2>
-
-        <div class="formas-pago">
-
-            <div>💳 Tarjeta</div>
-            <div>📱 Nequi</div>
-            <div>📱 Daviplata</div>
-            <div>🏦 Transferencia</div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================== CONTACTO ==================== -->
-
-    <section id="contacto" class="contacto">
-
-        <div class="titulo-seccion">
-
-            <span></span>
-
-            <div>
-                <h2>Contáctanos</h2>
-                <p>Estamos para ayudarte</p>
-            </div>
-
-            <span></span>
-
-        </div>
-
-
-        <div class="datos-contacto">
-
-            <div>
-                <h3>📞 Teléfono</h3>
-                <p>313 000 0000</p>
-            </div>
-
-            <div>
-                <h3>📱 WhatsApp</h3>
-                <p>313 000 0000</p>
-            </div>
-
-            <div>
-                <h3>📧 Correo</h3>
-                <p>contacto@cava.com</p>
-            </div>
-
-            <div>
-                <h3>📍 Dirección</h3>
-                <p>Colombia</p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================== CARRITO ==================== -->
-
-    <div id="carrito" class="carrito">
-
-        <div class="carrito-contenido">
-
-            <button
-                class="cerrar"
-                onclick="cerrarCarrito()"
-            >
-                ✕
+            <button type="submit" class="boton">
+                Enviar pedido por WhatsApp
             </button>
 
-            <h2>🛒 Tu carrito</h2>
+        </form>
 
-            <div id="lista-carrito">
-                <p>Tu carrito está vacío.</p>
-            </div>
+    </section>
 
-            <div class="total">
 
-                <strong>Total:</strong>
+    <!-- CONTACTO -->
+    <footer id="contacto">
 
-                <span id="total-carrito">
-                    $0
-                </span>
+        <h2>CAVA</h2>
 
-            </div>
+        <p>Innovando tus pasos.</p>
 
-           <button class="btn principal" onclick="mostrarPedido()">
-    Continuar pedido
-</button>
-
-        </div>
-
-    </div>
-<!-- ==================== FORMULARIO DE PEDIDO ==================== -->
-
-<div id="pedido" class="pedido">
-    <div class="pedido-contenido">
-
-        <button class="cerrar" onclick="cerrarPedido()">✕</button>
-
-        <h2>Finaliza tu pedido</h2>
-        <p>Completa tus datos para recibir tu pedido CAVA.</p>
-
-        <label>Nombre completo</label>
-        <input type="text" id="nombrePedido" placeholder="Escribe tu nombre">
-
-        <label>Teléfono</label>
-        <input type="tel" id="telefonoPedido" placeholder="Ej: 313 000 0000">
-
-        <label>Dirección de entrega</label>
-        <input type="text" id="direccionPedido" placeholder="Ciudad, barrio y dirección">
-
-        <label>Método de pago</label>
-        <select id="pagoPedido">
-            <option value="">Selecciona una opción</option>
-            <option>Nequi</option>
-            <option>Daviplata</option>
-            <option>Transferencia bancaria</option>
-            <option>Pago contra entrega</option>
-        </select>
-
-        <label>Observaciones</label>
-        <textarea id="observacionesPedido"
-            placeholder="¿Algún detalle especial de tu pedido?"></textarea>
-
-        <button class="btn principal" onclick="confirmarPedido()">
-            Confirmar pedido
-        </button>
-
-        <button class="btn secundario" onclick="cerrarPedido()">
-            Volver al carrito
-        </button>
-
-    </div>
-</div>
-
-    <!-- ==================== PIE DE PÁGINA ==================== -->
-
-    <footer>
-
-        <div class="logo">
-            <h2>CAVA</h2>
-            <span>DISEÑA TU PASO</span>
-        </div>
-
-        <p>
-            © 2026 CAVA. Todos los derechos reservados.
-        </p>
-
-        <div class="redes">
-
-            <a href="#">Facebook</a>
-            <a href="#">Instagram</a>
-            <a href="#">WhatsApp</a>
-
-        </div>
+        <a href="https://wa.me/573000000000"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="boton">
+            Contactar por WhatsApp
+        </a>
 
     </footer>
 
-
-    <!-- JAVASCRIPT -->
 
     <script src="js/app.js"></script>
 
 </body>
 </html>
+
+
+
